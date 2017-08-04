@@ -12,5 +12,23 @@ namespace MVC.Ajax._02.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public JsonResult GetHello(string name)
+        {
+            List<string> data = new List<string>();
+            data.Add((string.Format("{0} Xin chào {1} ", DateTime.Now.ToString(), name)));
+            foreach (var item in name)
+            {
+                data.Add(item + " = " + ((int)item).ToString());
+            }
+            return Json(data);
+        }
+
+        [HttpPost]
+        public ActionResult GetHtml()
+        {
+            return Json("<p>This is result <b>HTML</b></p>");
+        }
     }
 }
