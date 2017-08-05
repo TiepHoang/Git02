@@ -13,6 +13,7 @@ namespace MVC.Ajax._02.Controllers
             return View();
         }
 
+        [OutputCache(Duration = 3600, VaryByParam = "name")] //OutputCache 3600s theo param Name.
         [HttpPost]
         public JsonResult GetHello(string name)
         {
@@ -25,10 +26,18 @@ namespace MVC.Ajax._02.Controllers
             return Json(data);
         }
 
+        [OutputCache(Duration = 60, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Client, NoStore = true)]
         [HttpPost]
         public ActionResult GetHtml()
         {
             return Json("<p>This is result <b>HTML</b></p>");
+        }
+
+        [OutputCache(CacheProfile = "cache60s")]
+        [HttpPost]
+        public ActionResult MyFunc()
+        {
+            return Json("");
         }
     }
 }
